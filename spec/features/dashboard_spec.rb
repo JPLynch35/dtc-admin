@@ -8,6 +8,8 @@ describe 'an admin' do
 
     before :each do
       allow_any_instance_of(ApplicationController).to receive(:authenticate_user!).and_return(true)
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
 
     it 'can see a list of credit donations' do
@@ -24,9 +26,7 @@ describe 'an admin' do
         currency: 'usd',
         created: Date.today.to_time.to_i
       })
-      
       visit dashboard_path
-
       expect(page).to have_content('Johnny App')
       expect(page).to have_content('Denver')
       expect(page).to have_content('CO')
@@ -57,16 +57,14 @@ describe 'an admin' do
       fill_in "start_date", with: stripe_donation.date
       fill_in "end_date", with: stripe_donation.date
       click_button "Filter"
-
+      
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content(stripe_donation.name)
       expect(page).to_not have_content(check_donation.name)
     end
 
-
     it 'can create a check donation and delete it' do
       expect(Donation.count).to eq(0)
-
       name = 'Bob'
       email = 'Bob@gmail.com'
       city = 'Denver'
@@ -76,18 +74,20 @@ describe 'an admin' do
 
       visit dashboard_path
 
-      fill_in 'Date', with: date
-      fill_in 'Name', with: name
-      fill_in 'Email', with: email
-      fill_in 'City', with: city
-      fill_in 'State', with: state
-      fill_in 'Amount', with: amount
+      within(:css, "div#donate-form") do
+        fill_in 'Date', with: date
+        fill_in 'Name', with: name
+        fill_in 'Email', with: email
+        fill_in 'City', with: city
+        fill_in 'State', with: state
+        fill_in 'Amount', with: amount
+      end
 
       click_on 'Create Donation'
       expect(current_path).to eq(dashboard_path)
       expect(Donation.count).to eq(1)
       expect(page).to have_content('Check Donations')
-      expect(page).to have_content('Donation has been added.')
+      expect(page).to have_content('Donation created.')
       expect(page).to have_content(name)
       expect(page).to have_content(city)
       expect(page).to have_content(state)
@@ -98,7 +98,7 @@ describe 'an admin' do
       expect(current_path).to eq(dashboard_path)
       expect(Donation.count).to eq(0)
       expect(page).to have_content('Check Donations')
-      expect(page).to have_content("Donation from #{name} was deleted.")
+      expect(page).to have_content("Donation deleted.")
       expect(page).to_not have_content(city)
       expect(page).to_not have_content(state)
       expect(page).to_not have_content(amount)
@@ -328,6 +328,68 @@ describe 'an admin' do
       within('#kids-sponsored') do
         expect(page).to have_content('52')
       end
+
+   it 'can create a contact and delete a contact' do
+      expect(Contact.count).to eq(0)
+     
+      name = 'Bob'
+      email = 'Bob@gmail.com'
+      phone = '345-654-3245'
+      organization = 'organization'
+      
+      visit dashboard_path
+      
+      within(:css, "div#contact-form") do
+        fill_in 'Name', with: name
+        fill_in 'Email', with: email
+        fill_in 'Phone', with: phone
+        fill_in 'Organization', with: organization
+      end
+
+      click_on 'Create Contact'
+      expect(current_path).to eq(dashboard_path)
+      expect(Contact.count).to eq(1)
+      expect(page).to have_content('Contacts')
+      expect(page).to have_content('Contact created.')
+      expect(page).to have_link('Delete')
+
+      click_on 'Delete'
+      expect(current_path).to eq(dashboard_path)
+      expect(Contact.count).to eq(0)
+      expect(page).to have_content('Contacts')
+      expect(page).to have_content("Contact deleted.")
+      expect(page).to_not have_content(email)
+      expect(page).to_not have_content(phone)
+      expect(page).to_not have_content('Delete')
+    end
+
+      it 'can create a user account and delete it' do
+      expect(User.count).to eq(1)
+     
+      email = 'Bob@gmail.com'
+      password = 'password-test'
+   
+      visit dashboard_path
+      
+      within(:css, "div#user-form") do
+        fill_in 'Email', with: email
+        fill_in 'Password', with: password
+      end
+
+      click_on 'Create User'
+      expect(current_path).to eq(dashboard_path)
+      expect(User.count).to eq(2)
+      expect(page).to have_content('Users')
+      expect(page).to have_content('User created.')
+      expect(page).to have_link('Delete')
+
+      click_on 'Delete'
+      expect(current_path).to eq(dashboard_path)
+      expect(User.count).to eq(1)
+      expect(page).to have_content('Users')
+      expect(page).to have_content("User deleted.")
+      expect(page).to_not have_content(email)
+      expect(page).to_not have_content('Delete')
     end
   end
 end

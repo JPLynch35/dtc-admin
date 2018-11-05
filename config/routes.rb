@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
   get '/filter', to: 'dashboard#index'
 
-  resources :donations
+  resources :donations, only: [:create, :destroy]
+  resources :contacts, only: [:create, :destroy]
+  resources :users, only: [:create, :destroy]
 end
