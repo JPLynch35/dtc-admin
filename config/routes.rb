@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :donations, only: [:create, :destroy]
   resources :contacts, only: [:create, :destroy]
+  resources :users, only: [:create, :destroy]
 end

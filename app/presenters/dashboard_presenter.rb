@@ -16,6 +16,10 @@ class DashboardPresenter
     Contact.new
   end
 
+  def create_new_user
+    User.new
+  end
+
   def retrieve_stripe_donations
     Donation.stripe_donations.where(date: first_day_of_year..current_day).order(date: :desc)
   end
@@ -26,6 +30,10 @@ class DashboardPresenter
 
   def retrieve_contacts
     Contact.all
+  end
+
+  def retrieve_users 
+    User.where(admin: false)
   end
 
   def retrieve_stripe_subtotal

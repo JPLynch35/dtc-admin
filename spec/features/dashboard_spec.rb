@@ -8,6 +8,8 @@ describe 'an admin' do
 
     before :each do
       allow_any_instance_of(ApplicationController).to receive(:authenticate_user!).and_return(true)
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
 
     it 'can see a list of credit donations' do
@@ -135,6 +137,35 @@ describe 'an admin' do
       expect(page).to have_content("Contact deleted.")
       expect(page).to_not have_content(email)
       expect(page).to_not have_content(phone)
+      expect(page).to_not have_content('Delete')
+    end
+
+      it 'can create a user account and delete it' do
+      expect(User.count).to eq(1)
+     
+      email = 'Bob@gmail.com'
+      password = 'password-test'
+   
+      visit dashboard_path
+      
+      within(:css, "div#user-form") do
+        fill_in 'Email', with: email
+        fill_in 'Password', with: password
+      end
+
+      click_on 'Create User'
+      expect(current_path).to eq(dashboard_path)
+      expect(User.count).to eq(2)
+      expect(page).to have_content('Users')
+      expect(page).to have_content('User created.')
+      expect(page).to have_link('Delete')
+
+      click_on 'Delete'
+      expect(current_path).to eq(dashboard_path)
+      expect(User.count).to eq(1)
+      expect(page).to have_content('Users')
+      expect(page).to have_content("User deleted.")
+      expect(page).to_not have_content(email)
       expect(page).to_not have_content('Delete')
     end
   end
