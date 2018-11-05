@@ -31,7 +31,7 @@ describe 'an admin' do
       expect(page).to have_content('Denver')
       expect(page).to have_content('CO')
       expect(page).to have_content('johnny214@gmail.com')
-      expect(page).to have_content(2500)
+      expect(page).to have_content('$25.00')
       expect(page).to have_content('Credit')
     end
 
@@ -91,7 +91,7 @@ describe 'an admin' do
       expect(page).to have_content(name)
       expect(page).to have_content(city)
       expect(page).to have_content(state)
-      expect(page).to have_content(amount)
+      expect(page).to have_content(amount.to_i / 100.0)
       expect(page).to have_link('Delete')
 
       click_on 'Delete'
@@ -105,6 +105,229 @@ describe 'an admin' do
       expect(page).to_not have_content('Edit')
       expect(page).to_not have_content('Delete')
     end
+
+    it 'can see subtotals for credit and check donations' do
+      customer1 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'CO',
+          address_city: 'Denver',
+          address_line2: 'johnny214@gmail.com',
+          )
+      })
+      customer2 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'PA',
+          address_city: 'Hampton',
+          address_line2: 'Tonya213@gmail.com',
+          )
+      })
+      customer3 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'NJ',
+          address_city: 'Ewing',
+          address_line2: 'TankTheTank23@gmail.com',
+          )
+      })
+      charge1 = Stripe::Charge.create({
+        customer: customer1.id,
+        amount: 2500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge2 = Stripe::Charge.create({
+        customer: customer2.id,
+        amount: 1500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge3 = Stripe::Charge.create({
+        customer: customer3.id,
+        amount: 570,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      check_donation = Donation.create(
+        name: 'Tanya Toni',
+        email: 'TonyaTheTiger122@gmail.com',
+        amount: '675',
+        donation_type: 'Check',
+        city: 'Denver',
+        state: 'CO',
+        date: Date.today
+      )
+      
+      visit dashboard_path
+
+      expect(page).to have_content('Sub-Total: $45.70')
+      expect(page).to have_content('Sub-Total: $6.75')
+    end
+
+    it 'can see total for all donations ever made' do
+      customer1 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'CO',
+          address_city: 'Denver',
+          address_line2: 'johnny214@gmail.com',
+          )
+      })
+      customer2 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'PA',
+          address_city: 'Hampton',
+          address_line2: 'Tonya213@gmail.com',
+          )
+      })
+      customer3 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'NJ',
+          address_city: 'Ewing',
+          address_line2: 'TankTheTank23@gmail.com',
+          )
+      })
+      charge1 = Stripe::Charge.create({
+        customer: customer1.id,
+        amount: 2500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge2 = Stripe::Charge.create({
+        customer: customer2.id,
+        amount: 1500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge3 = Stripe::Charge.create({
+        customer: customer3.id,
+        amount: 570,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      check_donation = Donation.create(
+        name: 'Tanya Toni',
+        email: 'TonyaTheTiger122@gmail.com',
+        amount: '675',
+        donation_type: 'Check',
+        city: 'Denver',
+        state: 'CO',
+        date: Date.today
+      )
+      
+      visit dashboard_path
+      within('#funds-raised') do
+        expect(page).to have_content('$52.45')
+      end
+    end
+
+    it 'can see total number of donors' do
+      customer1 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'CO',
+          address_city: 'Denver',
+          address_line2: 'johnny214@gmail.com',
+          )
+      })
+      customer2 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'PA',
+          address_city: 'Hampton',
+          address_line2: 'Tonya213@gmail.com',
+          )
+      })
+      customer3 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'NJ',
+          address_city: 'Ewing',
+          address_line2: 'TankTheTank23@gmail.com',
+          )
+      })
+      charge1 = Stripe::Charge.create({
+        customer: customer1.id,
+        amount: 2500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge2 = Stripe::Charge.create({
+        customer: customer2.id,
+        amount: 1500,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge3 = Stripe::Charge.create({
+        customer: customer3.id,
+        amount: 570,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      check_donation = Donation.create(
+        name: 'Tanya Toni',
+        email: 'TonyaTheTiger122@gmail.com',
+        amount: '675',
+        donation_type: 'Check',
+        city: 'Denver',
+        state: 'CO',
+        date: Date.today
+      )
+      
+      visit dashboard_path
+      within('#total-donors') do
+        expect(page).to have_content('4')
+      end
+    end
+
+    it 'can see total number kids sponsored' do
+      customer1 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'CO',
+          address_city: 'Denver',
+          address_line2: 'johnny214@gmail.com',
+          )
+      })
+      customer2 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'PA',
+          address_city: 'Hampton',
+          address_line2: 'Tonya213@gmail.com',
+          )
+      })
+      customer3 = Stripe::Customer.create({
+        source: stripe_helper.generate_card_token(
+          address_state: 'NJ',
+          address_city: 'Ewing',
+          address_line2: 'TankTheTank23@gmail.com',
+          )
+      })
+      charge1 = Stripe::Charge.create({
+        customer: customer1.id,
+        amount: 250000,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge2 = Stripe::Charge.create({
+        customer: customer2.id,
+        amount: 150000,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      charge3 = Stripe::Charge.create({
+        customer: customer3.id,
+        amount: 57000,
+        currency: 'usd',
+        created: Date.today.to_time.to_i
+      })
+      check_donation = Donation.create(
+        name: 'Tanya Toni',
+        email: 'TonyaTheTiger122@gmail.com',
+        amount: '67500',
+        donation_type: 'Check',
+        city: 'Denver',
+        state: 'CO',
+        date: Date.today
+      )
+      
+      visit dashboard_path
+      within('#kids-sponsored') do
+        expect(page).to have_content('52')
+      end
 
    it 'can create a contact and delete a contact' do
       expect(Contact.count).to eq(0)
