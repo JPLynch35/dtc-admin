@@ -12,12 +12,20 @@ class DashboardPresenter
     Donation.new
   end
 
+  def create_new_contact
+    Contact.new
+  end
+
   def retrieve_stripe_donations
     Donation.stripe_donations.where(date: first_day_of_year..current_day).order(date: :desc)
   end
 
   def retrieve_check_donations
     Donation.check_donations.where(date: first_day_of_year..current_day)
+  end
+
+  def retrieve_contacts
+    Contact.all
   end
 
   def retrieve_stripe_subtotal
