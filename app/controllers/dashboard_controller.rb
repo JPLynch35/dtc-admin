@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    unless params[:start_date] || params[:end_date]
+    unless date_params[:start_date] || date_params[:end_date]
       PaymentService.collect
     end
     @presenter = DashboardPresenter.new(date_params)

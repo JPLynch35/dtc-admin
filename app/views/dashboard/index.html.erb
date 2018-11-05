@@ -1,3 +1,10 @@
+<nav>
+  <h4 id="total-donors">Total Donors: <%= @presenter.retrieve_total_donors %></h4>
+  <h4 id="funds-raised">Funds Raised: <%= number_to_currency(@presenter.retrieve_all_total, unit: '$') %></h4>
+  <h4 id="kids-sponsored">Kids Sponsored: <%= @presenter.calculate_kids_sponsored %></h4>
+  <%= link_to "Change your password", edit_user_registration_path %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+</nav>
 <h1>Donations</h1>
  <h2>Stripe Donations</h2>
   <% @presenter.retrieve_stripe_donations.each do |donation| %>
@@ -6,11 +13,12 @@
       <%= donation.city %>
       <%= donation.state %>
       <%= donation.email %>
-      <%= donation.amount %>
+      <%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %>
       <%= donation.donation_type %>
       <%= donation.date %>
     </ul>
   <% end %>
+  <h4>Sub-Total: <%= number_to_currency(@presenter.retrieve_stripe_subtotal, unit: '$') %></h4>
 
  <h2>Check Donations</h2>
   <% @presenter.retrieve_check_donations.each do |donation| %>
@@ -19,12 +27,13 @@
       <%= donation.city %>
       <%= donation.state %>
       <%= donation.email %>
-      <%= donation.amount %>
+      <%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %>
       <%= donation.donation_type %>
       <%= donation.date %>
       <%= link_to 'Delete', donation_path(donation), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } %> 
     </ul>
   <% end %>
+  <h4>Sub-Total: <%= number_to_currency(@presenter.retrieve_check_subtotal, unit: '$') %></h4>
 
  <h2>Log A Donation</h2>
   <%= form_for @presenter.create_new_donation do |f| %>
