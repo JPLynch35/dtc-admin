@@ -1,7 +1,7 @@
 class DonationCreator
 
   def initialize(payment)
-    unless Donation.find_by_stripe_id(payment[:stripe_id])
+    unless Donation.find_by_stripe_id(payment[:id])
       Donation.create(
         stripe_id:      payment[:id], 
         name:           payment[:source][:name], 
