@@ -1,0 +1,52 @@
+<h1>Donations</h1>
+ <h2>Stripe Donations</h2>
+  <% @presenter.retrieve_stripe_donations.each do |donation| %>
+    <ul>
+      <%= donation.name %>
+      <%= donation.city %>
+      <%= donation.state %>
+      <%= donation.email %>
+      <%= donation.amount %>
+      <%= donation.donation_type %>
+      <%= donation.date %>
+    </ul>
+  <% end %>
+
+ <h2>Check Donations</h2>
+  <% @presenter.retrieve_check_donations.each do |donation| %>
+    <ul>
+      <%= donation.name %>
+      <%= donation.city %>
+      <%= donation.state %>
+      <%= donation.email %>
+      <%= donation.amount %>
+      <%= donation.donation_type %>
+      <%= donation.date %>
+      <%= link_to 'Delete', donation_path(donation), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } %> 
+    </ul>
+  <% end %>
+
+ <h2>Log A Donation</h2>
+  <%= form_for @presenter.create_new_donation do |f| %>
+   <%= f.label :date %>
+  <%= f.date_field :date %>
+   <%= f.label :name %>
+  <%= f.text_field :name %>
+   <%= f.label :email %>
+  <%= f.text_field :email %>
+   <%= f.label :city %>
+  <%= f.text_field :city %>
+   <%= f.label :state %>
+  <%= f.text_field :state %>
+   <%= f.label :amount %>
+  <%= f.number_field :amount %>
+   <%= f.hidden_field :donation_type, value: 'Check' %>
+  <%= f.hidden_field :stripe_id, value: '' %>
+  <%= f.submit %>
+  <% end %>
+
+<%= form_tag '', :method => :get do %>
+  <%= date_field_tag :start_date %>
+  <%= date_field_tag :end_date %>
+  <%= submit_tag 'Filter' %>
+<% end %>
