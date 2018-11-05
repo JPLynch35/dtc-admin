@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+$info: #345995;
+$primary: #03CEA4;
+$danger: #E40066;
+$warning: #FF9F1C;
+$dark: #011627;
+$font-family: 'Open Sans', sans-serif;
+$font-family: 'Oswald', sans-serif;
+$font-family: 'Roboto', sans-serif;
+@import "bulma";
+
+.sign-in-box{
+  width: 400px;
+  margin-left: 50px;
+}
