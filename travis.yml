@@ -1,0 +1,13 @@
+language: ruby
+cache:
+- bundler
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+deploy:
+  provider: heroku
+  api_key:
+    secure: "bzI79bMg8HmZhMKP6wGZfbwmp+lYopVasiflZn6Bam4i+eJ+jTs7Q3N6Ediy00WV9/4+/9FALFoWjotEO/vulDX4R5a9ESn8EvjC/i5yzBYLZW0Q48z7RK76eb6egVZFR1lHaKPRyjDBU+fofQr/kXENkkHhVUahECGTsBUQ97rzqFy8H3orglGHbDcrKpjwdNKltubEeE75ZvOymXimN4BUgbfG/cREi0keqDAxpa5Xbj3fAE3HL122MUWHpFLIEP5+MZUO12je0E7EoiMXkWkNv+ebCsDC4TknPdFHdcU2kyofXftRsoZBG6xOHGKsKgMvJlhh2dxjv7/iE520kFSUZUQajzaLSBjdvG4PwKKboNGIKHFGLUwWpQMbyO6qubXBmlUrnvFfSeGaLLwLETmLk7XdgI6NdUcdMGOMie3of4fwq2BcXax4kTJSNwnwpObuLwN80ii7Ki0uRIZDHBx/ym0itFn6yV2L6n7np3LPMzCoNcssgp4sCVKL+cL5yeNWQQMJGgQktETzaPU+lEq66GY3uvjuE8NjB6Ik6IuBHyS7mtAaLeh3VRja9bp5el3XbY4JG94F//pmdrpJb44cMZ4vEvSmhtSUreKWUNkmgdBjaXHSjHupnfnHmmHeVLCAacC7Z4nNM0kry2bdiEu+u8RRT5y1fpAik8f/Snw="
+  app: glacial-sands-74502
+  on:
+    repo: emmiehayes/dtc-admin
