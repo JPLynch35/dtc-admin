@@ -1,16 +1,18 @@
 class DonationCreator
 
   def initialize(payment)
-    Donation.create!(
-      stripe_id: payment[:id], 
-      name: payment[:source][:name], 
-      amount: payment[:amount],
-      donation_type: 'Credit',
-      city: payment[:source][:address_city], 
-      state: payment[:source][:address_state],
-      email: payment[:source][:address_line2],
-      date: format_date(payment[:created])
-    )
+    unless Donation.find_by_stripe_id(payment[:stripe_id])
+      Donation.create(
+        stripe_id:      payment[:id], 
+        name:           payment[:source][:name], 
+        amount:         payment[:amount],
+        donation_type: 'Credit',
+        city:           payment[:source][:address_city], 
+        state:          payment[:source][:address_state],
+        email:          payment[:source][:address_line2],
+        date:           format_date(payment[:created])
+      )
+    end
   end
 
 private
