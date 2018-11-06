@@ -48,7 +48,7 @@ describe 'an admin' do
       expect(page).to have_content(donation.date)
     end
 
-     it 'can filter donations by dates' do
+    it 'can filter donations by dates' do
       stripe_donation = create(:donation)
       check_donation = create(:check_donation, date: Time.now.tomorrow)
 
@@ -213,8 +213,8 @@ describe 'an admin' do
       )
       
       visit dashboard_path
-      within('#funds-raised') do
-        expect(page).to have_content('$52.45')
+      within('.donations-circle') do
+        expect(page).to have_content('$52')
       end
     end
 
@@ -269,7 +269,7 @@ describe 'an admin' do
       )
       
       visit dashboard_path
-      within('#total-donors') do
+      within('.donors-circle') do
         expect(page).to have_content('4')
       end
     end
@@ -325,9 +325,10 @@ describe 'an admin' do
       )
       
       visit dashboard_path
-      within('#kids-sponsored') do
+      within('.kids-circle') do
         expect(page).to have_content('52')
       end
+    end
 
    it 'can create a contact and delete a contact' do
       expect(Contact.count).to eq(0)
