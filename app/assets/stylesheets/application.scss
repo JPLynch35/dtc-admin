@@ -27,6 +27,11 @@ html {
   background-color: #345995;;
 }
 
+.sign-in-box{
+  width: 400px;
+  margin-left: 50px;
+}
+
 .navbar{
   border-top: solid 2px black;
   border-bottom: solid 3px black;
@@ -114,38 +119,14 @@ html {
   color: white;
 }
 
-.sign-in-box{
-  width: 400px;
-  margin-left: 50px;
-}
-
-
-#start_date{
-  width: 200px;
-  height: 35px;
-  margin: 15px;
-}
-
-#end_date{
-  width: 200px;
-  height: 35px;
-  margin: 15px;
-}
-
-.button{
-  width: 150px;
-  height: 35px;
-  margin: 15px;
+.columns{
+  margin-top: 3%;
 }
 
 .donation-table {
   background-color: whitesmoke;
-  width: 925px;
   border: 1px solid black;
-  text-align: center; 
-  margin-left: auto; 
-  margin-right: 3%; 
-  margin-bottom: 2%; 
+  width: 100%;
 }
 
 thead {
@@ -183,3 +164,36 @@ td {
   font-weight: bold;
 }
 
+#donate-form{
+  border-color: #ffffff;
+  padding: 10%;
+}
+
+.title{
+  color: white;
+}
+
+#start_date{
+  width: 25%;
+  height: 2rem;
+  margin: 2%;
+}
+
+#end_date{
+  width: 25%;
+  height: 2rem;
+  margin: 2%;
+}
+
+.button{
+  margin-top: 1.8%;
+}
+
+.input{
+  margin-top: 4%;
+  margin-bottom: 1%
+}
+
+.filter-form{
+  margin-left: 40%
+}

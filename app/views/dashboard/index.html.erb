@@ -1,9 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
-
   <article class="logo-box">
     <%= image_tag "DressTheChild.png", class: "dtc-logo" %>
   </article>
-
   <article class="donation-metrics">
     <div class="metric-square">
       Total Donors
@@ -18,7 +16,6 @@
       <div class="kids-circle"><%= @presenter.calculate_kids_sponsored %></div>
     </div>
   </article>
-
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
@@ -27,47 +24,32 @@
       </div>
     </div>
   </div>
-  
 </nav>
-
-  <div class="container has-text-right">
-    <%= form_tag '', :method => :get do %>
-      <%= date_field_tag :start_date %>
-      <%= date_field_tag :end_date %>
-      <%= submit_tag 'Filter Donations', class: "button is-warning" %>
-    <% end %>
-  </div>
- <div class="columns is-gapless">
-  <div class="column is-one-quarter">
+ <div class="columns">
+  <div class="column is-one-third">
     <div id="donate-form">
-      <h3>Create Donation</h3>
-        <%= form_for @presenter.create_new_donation do |f| %>
-        <%= f.label :date %>
-        <%= f.date_field :date %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-        <%= f.label :state %>
-        <%= f.text_field :state %>
-        <%= f.label :amount %>
-        <%= f.number_field :amount %>
-        <%= f.hidden_field :donation_type, value: 'Check' %>
-        <%= f.hidden_field :stripe_id, value: '' %>
-        <%= f.submit %>
-        <% end %>
+     <h1 class="title">Add Donation</h1>
+      <%= form_for @presenter.create_new_donation do |f| %>
+      <%= f.date_field :date, class: 'input is-primary', placeholder: "date" %>
+      <%= f.text_field :name, class: 'input is-primary', placeholder: "name" %>
+      <%= f.text_field :email, class: 'input is-primary', placeholder: "email" %>
+      <%= f.text_field :city, class: 'input is-primary', placeholder: "city" %>
+      <%= f.text_field :state, class: 'input is-primary', placeholder: "state" %>
+      <%= f.number_field :amount, class: 'input is-primary', placeholder: "amount" %>
+      <%= f.hidden_field :donation_type, value: 'Check' %>
+      <%= f.hidden_field :stripe_id, value: '' %>
+      <%= f.submit "Create Donation", class: "button is-warning" %>
+      <% end %>
     </div>
   </div>
-  <div class="column is-auto">
+  <div class="column is-7">
     <div class="tables">
       <div class="donation-table">
         <table class="credit-table">
           <thead class="credit-head">
             <tr>
-              <th width="15%">Name</th>
-              <th width="10%">City</th>
+              <th width="25%">Name</th>
+              <th width="15%">City</th>
               <th width="10%">State</th>
               <th width="25%">Email</th>
               <th width="10%">Amount</th>
@@ -77,24 +59,25 @@
           <tbody>
           <% @presenter.retrieve_stripe_donations.each do |donation| %>
             <tr>
-                <td width="15%"><%= donation.name %></td>
-                <td width="10%"><%= donation.city %></td>
-                <td width="10%"><%= donation.state %></td>
-                <td width="25%"><%= donation.email %></td>
-                <td width="10%"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
-                <td width="15%"><%= donation.date %></td>
+              <td width="25%"><%= donation.name %></td>
+              <td width="15%"><%= donation.city %></td>
+              <td width="10%"><%= donation.state %></td>
+              <td width="25%"><%= donation.email %></td>
+              <td width="10%"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
+              <td width="15%"><%= donation.date %></td>
             </tr>
           <% end %>
           </tbody>
         </table>
       <div class="subtotal-row">Credit Sub-Total: <%= number_to_currency(@presenter.retrieve_stripe_subtotal, unit: '$') %></div>
       </div>
+      <br>
       <div class="donation-table">
         <table class="check-table">
           <thead class="check-head">
             <tr>
-              <th width="15%">Name</th>
-              <th width="10%">City</th>
+              <th width="25%">Name</th>
+              <th width="15%">City</th>
               <th width="10%">State</th>
               <th width="25%">Email</th>
               <th width="10%">Amount</th>
@@ -104,8 +87,8 @@
           <tbody>
           <% @presenter.retrieve_check_donations.each do |donation| %>
             <tr>
-              <td width="15%"><%= donation.name %></td>
-              <td width="10%"><%= donation.city %></td>
+              <td width="25%"><%= donation.name %></td>
+              <td width="15%"><%= donation.city %></td>
               <td width="10%"><%= donation.state %></td>
               <td width="25%"><%= donation.email %></td>
               <td width="10%"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
@@ -119,6 +102,12 @@
     </div>
   </div>
 </div>
-
-
-     
+<div class="container">
+  <div class="filter-form">
+    <%= form_tag '', :method => :get do %>
+      <%= date_field_tag :start_date %>
+      <%= date_field_tag :end_date %>
+      <%= submit_tag 'Filter Donations', class: "button is-warning" %>
+    <% end %>
+  </div>
+</div>
