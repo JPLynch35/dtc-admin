@@ -4,10 +4,6 @@ class DashboardPresenter
     @end_date = date_params[:end_date]
   end
 
-  def initialize(date_params)
-    @date_params = date_params
-  end
-
   def create_new_donation
     Donation.new
   end
