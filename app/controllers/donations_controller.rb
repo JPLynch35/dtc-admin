@@ -1,7 +1,7 @@
 class DonationsController < ApplicationController
 
   def create
-    donation = Donation.create(donation_params)
+    donation = Donation.create(modified_donation_params)
     if donation.save 
       redirect_to dashboard_path, :alert => "Donation created."
     else
@@ -19,5 +19,11 @@ class DonationsController < ApplicationController
 
   def donation_params
     params.require(:donation).permit(:id, :name, :email, :city, :state, :amount, :date, :donation_type, :stripe_id)
+  end
+
+  def modified_donation_params
+    updated_params = donation_params
+    updated_params[:amount] = (updated_params[:amount].to_i * 100).to_s
+    updated_params
   end
 end

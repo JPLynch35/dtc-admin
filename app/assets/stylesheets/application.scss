@@ -33,12 +33,13 @@ html {
 }
 
 .navbar{
-  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+  border-bottom: solid 3px black;
 }
 
 .logo-box{
   height: 100%;
-  width: 200px;
+  width: 300px;
   display: flex;
   align-self: center;
   margin-left: 13px;
@@ -47,6 +48,10 @@ html {
 .dtc-logo{
   height: 75px;
   width: auto;
+}
+
+.bold{
+  font-weight: bold;
 }
 
 .donation-metrics{
@@ -64,7 +69,7 @@ html {
   justify-content: center;
   align-items: center;
   margin-top: 0.25%;
-  margin-bottom: 0.25%;
+  margin-bottom: 0.75%;
   margin-left: 2%;
   margin-right: 2%;
 }
