@@ -37,11 +37,23 @@ class DashboardPresenter
   end
 
   def retrieve_stripe_subtotal
-    retrieve_stripe_donations.pluck(:amount).sum(&:to_f)
+    retrieve_stripe_donations.pluck(:amount).sum(&:to_i) / 100.00
   end
 
   def retrieve_check_subtotal
-    retrieve_check_donations.pluck(:amount).sum(&:to_f)
+    retrieve_check_donations.pluck(:amount).sum(&:to_i) / 100.00
+  end
+
+  def retrieve_all_total
+    Donation.calculate_funds.to_i / 100
+  end
+
+  def retrieve_total_donors
+    Donation.count_donors
+  end
+
+  def calculate_kids_sponsored
+    (retrieve_all_total / 100).floor.to_i
   end
 
   private

@@ -1,3 +1,39 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+
+  <article class="logo-box">
+    <%= image_tag "DressTheChild.svg", class: "dtc-logo" %>
+  </article>
+
+  <article class="donation-metrics">
+    <div class="metric-square">
+      Total Donors
+      <div class="donors-circle"><%= @presenter.retrieve_total_donors %></div>
+    </div>
+    <div class="metric-square">
+      Funds Raised
+      <div class="donations-circle"><%= number_to_currency(@presenter.retrieve_all_total, unit: '$', precision: 0) %></div>
+    </div>
+    <div class="metric-square">
+      Kids Sponsored
+      <div class="kids-circle"><%= @presenter.calculate_kids_sponsored %></div>
+    </div>
+  </article>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <a class="button is-primary">
+          <strong>Change Password</strong>
+        </a>
+        <a class="button is-danger">
+          <strong>Sign Out</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+</nav>
+
   <div class="container has-text-right">
     <%= form_tag '', :method => :get do %>
       <%= date_field_tag :start_date %>
@@ -88,3 +124,5 @@
   </div>
 </div>
 
+
+     

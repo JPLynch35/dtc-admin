@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     unless date_params[:start_date] || date_params[:end_date]
