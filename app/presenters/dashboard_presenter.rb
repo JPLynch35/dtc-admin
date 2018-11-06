@@ -45,7 +45,7 @@ class DashboardPresenter
   end
 
   def retrieve_all_total
-    Donation.calculate_funds.to_i / 100.00
+    Donation.calculate_funds.to_i / 100
   end
 
   def retrieve_total_donors

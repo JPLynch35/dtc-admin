@@ -1,10 +1,39 @@
-<nav>
-  <h4 id="total-donors">Total Donors: <%= @presenter.retrieve_total_donors %></h4>
-  <h4 id="funds-raised">Funds Raised: <%= number_to_currency(@presenter.retrieve_all_total, unit: '$') %></h4>
-  <h4 id="kids-sponsored">Kids Sponsored: <%= @presenter.calculate_kids_sponsored %></h4>
-  <%= link_to "Change your password", edit_user_registration_path %>
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+
+  <article class="logo-box">
+    <%= image_tag "DressTheChild.svg", class: "dtc-logo" %>
+  </article>
+
+  <article class="donation-metrics">
+    <div class="metric-square">
+      Total Donors
+      <div class="donors-circle"><%= @presenter.retrieve_total_donors %></div>
+    </div>
+    <div class="metric-square">
+      Funds Raised
+      <div class="donations-circle"><%= number_to_currency(@presenter.retrieve_all_total, unit: '$', precision: 0) %></div>
+    </div>
+    <div class="metric-square">
+      Kids Sponsored
+      <div class="kids-circle"><%= @presenter.calculate_kids_sponsored %></div>
+    </div>
+  </article>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <a class="button is-primary">
+          <strong>Change Password</strong>
+        </a>
+        <a class="button is-danger">
+          <strong>Sign Out</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+  
 </nav>
+
 <h1>Donations</h1>
 
   <%= form_tag '', :method => :get do %>
