@@ -1,39 +1,59 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section class="hero is-info is-fullheight">
+  <div class="hero-body">
+    <div class="devise-box">
+      <h2 class="title is-2">Edit My Account</h2>
 
-<%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f| %>
-  <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f| %>
+        <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field">
+            <div class="control has-icons-left">
+            <%= f.email_field :email, class: "input is-medium is-info", placeholder: "email" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+          <div class="field">
+            <p>Leave password blank if you don't want to change it.</p>
+            <p>To update, password must be 
+              <% if @minimum_password_length %>
+              <%= @minimum_password_length %> characters minimum.
+              <% end %>
+            </p>
+            <div class="control has-icons-left">
+              <%= f.password_field :password, class: "input is-medium is-info", placeholder: "new password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+          <%= f.label :password_confirmation %><br />
+            <div class="control has-icons-left">
+              <%= f.password_field :password_confirmation, class: "input is-medium is-info", placeholder: "new password" %>
+                <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password %> is required to submit changes.<br />
+            <div class="control has-icons-left">
+            <%= f.password_field :current_password, class: "input is-medium is-info", placeholder: "current password" %>
+              <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+          <%= f.submit "Update", class: "button is-primary is-hovered" %>
+        <% end %>
+        <%= link_to "Back to Dashboard", :back, class: "button is-danger is-hovered" %>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<%= link_to "Back", :back %>
+</section>
