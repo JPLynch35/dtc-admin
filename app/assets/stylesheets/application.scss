@@ -27,19 +27,19 @@ html {
   background-color: #345995;;
 }
 
-.sign-in-box{
+.devise-box{
   width: 400px;
   margin-left: 50px;
 }
 
 .navbar{
-  border-top: solid 2px black;
-  border-bottom: solid 3px black;
+  border-top: solid 2px white;
+  border-bottom: solid 3px white;
 }
 
 .logo-box{
   height: 100%;
-  width: 300px;
+  width: 400px;
   display: flex;
   align-self: center;
   margin-left: 13px;
@@ -56,7 +56,7 @@ html {
 
 .donation-metrics{
   display: flex;
-  width: 100%;
+  width: 37%;
   justify-content: center;
 }
 
@@ -135,7 +135,8 @@ thead {
 }
 
 tr {
- border: 1px solid black;
+  border: 1px solid black;
+  height: 1rem;
 }
 
 th, td {
@@ -151,38 +152,27 @@ td {
   white-space: nowrap;
 }
 
-.subtotal-row {
+.donation-type-row, .subtotal-row {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 32px;
   border: 1px solid black;
-  background-color: whitesmoke;
+  background-color: #ccc6c6;
   color: black;
   text-align: center; 
   font-weight: bold;
 }
 
-#donate-form{
-  border-color: #ffffff;
-  padding: 10%;
+#donate-form, #filter-form{
+  padding: 4%;
+  width: 70%;
+  margin-left: 20%;
 }
 
 .title{
   color: white;
-}
-
-#start_date{
-  width: 25%;
-  height: 2rem;
-  margin: 2%;
-}
-
-#end_date{
-  width: 25%;
-  height: 2rem;
-  margin: 2%;
 }
 
 .button{
@@ -190,10 +180,22 @@ td {
 }
 
 .input{
-  margin-top: 4%;
-  margin-bottom: 1%
+  margin-bottom: 4%
 }
 
-.filter-form{
-  margin-left: 40%
+.fas.fa-minus-circle{
+  color: red;
+}
+
+.main-body{
+  height: 100px;
+  overflow: scroll;
+}
+
+.links{
+  color: white;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
