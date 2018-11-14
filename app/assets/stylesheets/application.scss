@@ -24,7 +24,7 @@ $font-family: 'Roboto', sans-serif;
 @import "bulma";
 
 html {
-  background-color: #345995;;
+  background-color: #345995;
 }
 
 .devise-box{
@@ -35,6 +35,7 @@ html {
 .navbar{
   border-top: solid 2px white;
   border-bottom: solid 3px white;
+  background-color: white;
 }
 
 .logo-box{
@@ -117,6 +118,24 @@ html {
   justify-content: center;
   font-size: 2em;
   color: white;
+}
+
+.tab-background{
+  background-color: rgb(157, 199, 206);
+  color: black;
+}
+
+.tabs a{
+  color: black;
+}
+
+.tabs.is-boxed li.is-active a{
+  color: white;
+  background-color: #345995;
+}
+
+.tabs ul{
+  border-color: white;
 }
 
 .columns{
