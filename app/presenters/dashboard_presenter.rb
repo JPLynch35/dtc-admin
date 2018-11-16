@@ -24,6 +24,10 @@ class DashboardPresenter
     Donation.check_donations.where(date: first_day_of_year..current_day)
   end
 
+  def retrieve_all_donations
+    Donation.all.where(date: first_day_of_year..current_day).order(date: :desc)
+  end
+
   def retrieve_contacts
     Contact.all
   end
@@ -50,6 +54,10 @@ class DashboardPresenter
 
   def calculate_kids_sponsored
     (retrieve_all_total / 100).floor.to_i
+  end
+
+  def list_headers
+    ['Name', 'City', 'State', 'Email', 'Amount', 'Date']
   end
 
   private

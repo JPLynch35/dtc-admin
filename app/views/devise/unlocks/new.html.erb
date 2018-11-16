@@ -5,7 +5,7 @@
        <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
         <%= devise_error_messages! %>
         <div class="control has-icons-left">
-        <%= f.email_field :email, class: "input is-info", placeholder: "email" %>
+        <%= f.email_field :email, class: "input is-medium is-info", placeholder: "email" %>
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>

@@ -14,17 +14,22 @@
  *= require_self
  */
 $info: #345995;
-$primary: #03CEA4;
-$danger: #E40066;
-$warning: #FF9F1C;
-$dark: #011627;
+$primary: rgb(7, 184, 148);
+$danger: rgb(207, 10, 99);
+$warning: rgb(245, 147, 0);
+$dark: #470661;
+$table-row-hover-background-color: rgb(7, 184, 148);
 $font-family: 'Open Sans', sans-serif;
 $font-family: 'Oswald', sans-serif;
 $font-family: 'Roboto', sans-serif;
 @import "bulma";
 
-html {
-  background-color: #345995;;
+html{
+  background-color: rgb(64, 69, 71);
+}
+
+input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 .devise-box{
@@ -32,170 +37,162 @@ html {
   margin-left: 50px;
 }
 
-.navbar{
-  border-top: solid 2px white;
-  border-bottom: solid 3px white;
-}
-
-.logo-box{
-  height: 100%;
-  width: 400px;
-  display: flex;
-  align-self: center;
-  margin-left: 13px;
-}
-
-.dtc-logo{
-  height: 75px;
-  width: auto;
-}
-
-.bold{
-  font-weight: bold;
-}
-
-.donation-metrics{
-  display: flex;
-  width: 37%;
-  justify-content: center;
-}
-
-.metric-square{
-  width: 125px;
-  height: 130px;
-  font-weight: bold;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.25%;
-  margin-bottom: 0.75%;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.donors-circle{
-  background-color: $primary;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
-  color: white;
-}
-
-.donations-circle{
-  background-color: $danger;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2em;
-  color: white;
-}
-
-.kids-circle{
-  background-color: $warning;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
-  color: white;
-}
-
-.columns{
-  margin-top: 3%;
-}
-
-.donation-table {
-  background-color: whitesmoke;
-  border: 1px solid black;
-  width: 100%;
-}
-
-thead {
-  background-color: rgb(157, 199, 206);
-  color: black;
-}
-
-tr {
-  border: 1px solid black;
-  height: 1rem;
-}
-
-th, td {
-  padding: 5px;
-}
-
-td {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.donation-type-row, .subtotal-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 32px;
-  border: 1px solid black;
-  background-color: #ccc6c6;
-  color: black;
-  text-align: center; 
-  font-weight: bold;
-}
-
-#donate-form, #filter-form{
-  padding: 4%;
-  width: 70%;
-  margin-left: 20%;
-}
-
-.title{
-  color: white;
-}
-
-.button{
-  margin-top: 1.8%;
-}
-
-.input{
-  margin-bottom: 4%
-}
-
-.fas.fa-minus-circle{
-  color: red;
-}
-
-.main-body{
-  height: 100px;
-  overflow: scroll;
-}
-
 .links{
   color: white;
 }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
+.navbar{
+  height: 7rem;
+}
+
+.dtc-logo{
+  height: 80%;
+  margin: .5rem;
+}
+
+.navbar-item{
+  display: inline-block;
+  text-align: right;
+}
+
+#sign-out-btn{
+ margin-bottom: .5rem;
+ margin-top: .5rem;
+}
+
+.circles{
+  margin: auto;
+}
+
+.metric-square{
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-align: center;
+  margin: .5rem;
+}
+
+.donors-circle{
+  width: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; 
+  background-color: $dark;
+  color: white;
+}
+
+.donations-circle{
+  width: 125px;
+  line-height: 125px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; 
+  background-color: $primary;
+  color: white;
+}
+
+.stripe-circle{
+  width: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; 
+  background-color: $link;
+  color: white;
+}
+
+.checks-circle{
+  width: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; 
+  background-color: $warning;
+  color: white;
+}
+
+.kids-circle{
+  width: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold; 
+  background-color: $danger;
+  color: white;
+}
+
+#main{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.title{
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+#filter-form{
+  font-family: 'Roboto', sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#start, #end{
+  width: 12rem;
+}
+
+input{
+  margin: .5rem;
+}
+
+#filter-btn{
+  font-family: 'Roboto', sans-serif;
+  margin: .5rem;
+}
+
+.table{
+  background-color: rgb(64, 69, 71);
+  margin-bottom: 1rem;
+}
+
+thead{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 19px;
+  background-color: rgba(255, 255, 255, 0.76);
+}
+
+tbody{
+  color: rgba(255, 255, 255, 0.926);
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+}
+
+p{
+  color: white;
+  margin: .5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+#date, #name, #city, #state, #email, #amount{
+  width: 20rem;
+}
+
+.far{
+  margin-left: 1rem;
+  color: $danger;
+}
+
+.fas{
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+#back-btn {
+  margin-top: .5rem;
 }
