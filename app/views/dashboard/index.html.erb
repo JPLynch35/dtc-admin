@@ -1,113 +1,94 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <article class="logo-box">
-    <%= image_tag "DressTheChild.png", class: "dtc-logo" %>
-  </article>
-  <article class="donation-metrics">
+<%# Nav %>
+
+<nav class="navbar is-white">
+  <%= image_tag "DressTheChild.png", class: "dtc-logo" %>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-outlined is-danger", id: "sign-out-btn" %>
+      <br>
+      <%= link_to "Change Password", edit_user_registration_path, class: "button is-outlined is-dark" %> 
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="main">
+
+<div class="circles">
     <div class="metric-square">
       Total Donors
       <div class="donors-circle"><%= @presenter.retrieve_total_donors %></div>
     </div>
     <div class="metric-square">
-      Funds Raised
+      Stripe
+      <div class="stripe-circle"><%= number_to_currency(@presenter.retrieve_stripe_subtotal, unit: '$', precision: 0) %></div>
+    </div>
+    <div class="metric-square">
+      Total Raised
       <div class="donations-circle"><%= number_to_currency(@presenter.retrieve_all_total, unit: '$', precision: 0) %></div>
+    </div>
+    <div class="metric-square">
+      Checks
+      <div class="checks-circle"><%= number_to_currency(@presenter.retrieve_check_subtotal, unit: '$', precision: 0) %></div>
     </div>
     <div class="metric-square">
       Kids Sponsored
       <div class="kids-circle"><%= @presenter.calculate_kids_sponsored %></div>
     </div>
-  </article>
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        <%= link_to "Change Password", edit_user_registration_path, class: "button is-primary bold" %>
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-danger bold" %>
-      </div>
-    </div>
   </div>
-</nav>
- <div class="columns">
-  <div class="column is-one-third">
-    <div id="filter-form">
-      <%= form_for '', :method => :get do |f| %>
-        <%= f.date_field :start_date, class: 'input is-primary', placeholder: "date" %>
-        <%= f.date_field :end_date, class: 'input is-primary', placeholder: "date" %>
-        <%= f.submit 'Filter Donations', class: "button is-warning" %>
-      <% end %>
-    </div>
-    <div id="donate-form">
-      <h1 class="title">Add Check Donation</h1>
-      <%= form_for @presenter.create_new_donation do |f| %>
-      <%= f.date_field :date, class: 'input is-primary', placeholder: "date" %>
-      <%= f.text_field :name, class: 'input is-primary', placeholder: "name" %>
-      <%= f.text_field :email, class: 'input is-primary', placeholder: "email" %>
-      <%= f.text_field :city, class: 'input is-primary', placeholder: "city" %>
-      <%= f.text_field :state, class: 'input is-primary', placeholder: "state" %>
-      <%= f.number_field :amount, class: 'input is-primary', placeholder: "amount" %>
+
+  <div class="container" id="filter-form">
+    <%= form_for '', :method => :get do |f| %>
+      <%= f.date_field :start_date, class: 'input is-primary', placeholder: "date", id: "start" %>
+      <%= f.date_field :end_date, class: 'input is-primary', placeholder: "date", id: "end" %>
+      <%= f.submit 'Filter Donations', class: "button is-inverted is-outlined is-link", id: "filter-btn"%>
+    <% end %>
+  </div>
+
+  <div class="container" id="donations-table">
+    <table class="table is-narrow is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Email</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @presenter.retrieve_all_donations.each do |donation| %>
+          <tr>
+            <td class="name"><%= donation.name %></td>
+            <td class="city"><%= donation.city %></td>
+            <td class="state"><%= donation.state %></td>
+            <td class="email"><%= donation.email %></td>
+            <td class="amount"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
+            <td class="date"><%= donation.date %></td>
+            <% if donation.donation_type == "Check" %>
+              <td width=9%><%= donation.donation_type %> <%= link_to donation_path(donation), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
+            <% else %>
+              <td class="type"><%= donation.donation_type %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container" id="donate-form">
+    <p>Fill out the form to add a new check or cash donation.</p>
+    <%= form_for @presenter.create_new_donation do |f| %>
+      <%= f.text_field :name, class: 'input is-primary', placeholder: "name", id:"name" %>
+      <%= f.text_field :city, class: 'input is-primary', placeholder: "city", id:"city" %>
+      <%= f.text_field :state, class: 'input is-primary', placeholder: "state", id:"state" %>
+      <%= f.text_field :email, class: 'input is-primary', placeholder: "email", id:"email" %>
+      <%= f.number_field :amount, class: 'input is-primary', placeholder: "amount", id:"amount" %>
+      <%= f.date_field :date, class: 'input is-primary', placeholder: "date", id:"date" %>
       <%= f.hidden_field :donation_type, value: 'Check' %>
       <%= f.hidden_field :stripe_id, value: '' %>
-      <%= f.submit "Create Donation", class: "button is-warning" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="column is-7">
-    <div class="tables">
-      <div class="donation-table">
-      <div class="donation-type-row">STRIPE DONATIONS</div>
-        <table class="credit-table">
-          <thead class="credit-head">
-            <tr>
-              <th width="25%">Name</th>
-              <th width="15%">City</th>
-              <th width="10%">State</th>
-              <th width="25%">Email</th>
-              <th width="10%">Amount</th>
-              <th width="15%">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @presenter.retrieve_stripe_donations.each do |donation| %>
-              <tr>
-                <td width="25%"><%= donation.name %></td>
-                <td width="15%"><%= donation.city %></td>
-                <td width="10%"><%= donation.state %></td>
-                <td width="25%"><%= donation.email %></td>
-                <td width="10%"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
-                <td width="15%"><%= donation.date %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="subtotal-row">Sub-Total: <%= number_to_currency(@presenter.retrieve_stripe_subtotal, unit: '$') %></div>
-      </div>
-      <br>
-      <div class="donation-table">
-        <div class="donation-type-row">CHECK DONATIONS</div>
-        <table class="check-table">
-          <thead class="check-head">
-            <tr>
-              <th width="25%">Name</th>
-              <th width="15%">City</th>
-              <th width="10%">State</th>
-              <th width="25%">Email</th>
-              <th width="10%">Amount</th>
-              <th width="15%">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @presenter.retrieve_check_donations.each do |donation| %>
-              <tr>
-                <td width="25%"><%= link_to donation_path(donation), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="fas fa-minus-circle"></i><% end %> <%= donation.name %></td>
-                <td width="15%"><%= donation.city %></td>
-                <td width="10%"><%= donation.state %></td>
-                <td width="25%"><%= donation.email %></td>
-                <td width="10%"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
-                <td width="15%"><%= donation.date %> 
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="subtotal-row">Sub-Total: <%= number_to_currency(@presenter.retrieve_check_subtotal, unit: '$') %></div>
-      </div>
-    </div>
+      <%= f.submit "Add Donation", class: "button is-inverted is-outlined is-link" %>
+    <% end %>
   </div>
 </div>
