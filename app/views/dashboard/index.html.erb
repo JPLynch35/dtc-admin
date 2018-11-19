@@ -136,7 +136,7 @@
             <td class="phone"><%= contact.phone %></td>
             <td class="email"><%= contact.email %></td>
             <td class="organization"><%= contact.organization %>
-              <%= link_to contact_path(contact), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
+              <%= link_to contact_path(contact), class:'contact-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
             </td>
           </tr>
         <% end %>

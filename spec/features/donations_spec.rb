@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'an admin' do
-  describe 'visiting the dashboard page' do
+  describe 'visiting the donations tab' do
     let(:stripe_helper) { StripeMock.create_test_helper }
     before { StripeMock.start }
     after { StripeMock.stop }
