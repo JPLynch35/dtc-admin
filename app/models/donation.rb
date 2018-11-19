@@ -1,5 +1,6 @@
 class Donation < ApplicationRecord
   validates_presence_of :amount, :donation_type, :date
+  validates :amount, numericality: { greater_than: 0 }
 
   def self.check_donations
     where(donation_type: 'Check')
