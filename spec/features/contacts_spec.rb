@@ -12,11 +12,11 @@ describe 'an admin' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
 
-   it 'can create a contact and delete a contact' do
+   it 'can create and delete a contact' do
       expect(Contact.count).to eq(0)
      
       name = 'Bob'
-      email = 'Bob@gmail.com'
+      email = 'bob2020@gmail.com'
       phone = '345-654-3245'
       organization = 'Pathmark'
       
@@ -52,7 +52,6 @@ describe 'an admin' do
       expect(page).to_not have_content(email)
       expect(page).to_not have_content(phone)
       expect(page).to_not have_content(organization)
-      expect(page).to_not have_content('Delete')
     end
   end
 end

@@ -90,7 +90,7 @@
             <td class="amount"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
             <td class="date"><%= donation.date %></td>
             <% if donation.donation_type == "Check" %>
-              <td width=9%><%= donation.donation_type %> <%= link_to donation_path(donation), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
+              <td width=9%><%= donation.donation_type %> <%= link_to donation_path(donation), class:'donation-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
             <% else %>
               <td class="type"><%= donation.donation_type %></td>
             <% end %>
@@ -170,7 +170,7 @@
         <% @presenter.retrieve_users.each do |user| %>
           <tr>
             <td class="email"><%= user.email %>
-              <%= link_to user_path(user), method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
+              <%= link_to user_path(user), class:'user-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
             </td>
           </tr>
         <% end %>

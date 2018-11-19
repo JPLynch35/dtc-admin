@@ -92,15 +92,17 @@ describe 'an admin' do
       expect(page).to have_content(amount)
       expect(page).to have_css('.far')
 
-      find(:css, ".far").click
+      within(:css, "#donations-table") do
+        find(:css, '.donation-delete').click
+      end
 
-      # expect(current_path).to eq(dashboard_path)
-      # expect(Donation.count).to eq(0)
-      # expect(page).to have_content("Donation deleted.")
-      # expect(page).to_not have_content(city)
-      # expect(page).to_not have_content(state)
-      # expect(page).to_not have_content(amount)
-      # expect(page).to_not have_content('Delete')
+      expect(current_path).to eq(dashboard_path)
+      expect(Donation.count).to eq(0)
+      expect(page).to have_content("Donation deleted.")
+      expect(page).to_not have_content(city)
+      expect(page).to_not have_content(state)
+      expect(page).to_not have_content(amount)
+      expect(page).to_not have_content('Delete')
     end
 
     it 'can see subtotals for credit and check donations' do
@@ -157,7 +159,6 @@ describe 'an admin' do
 
       # expect(page).to have_content('Sub-Total: $45.70')
       # expect(page).to have_content('Sub-Total: $6.75')
-      # TODO fix rounding
     end
 
     it 'can see total for all donations ever made' do
@@ -327,68 +328,5 @@ describe 'an admin' do
         expect(page).to have_content('52')
       end
     end
-
-  #  it 'can create a contact and delete a contact' do
-  #     expect(Contact.count).to eq(0)
-     
-  #     name = 'Bob'
-  #     email = 'Bob@gmail.com'
-  #     phone = '345-654-3245'
-  #     organization = 'organization'
-      
-  #     visit dashboard_path
-      
-  #     within(:css, "div#contact-form") do
-  #       fill_in 'Name', with: name
-  #       fill_in 'Email', with: email
-  #       fill_in 'Phone', with: phone
-  #       fill_in 'Organization', with: organization
-  #     end
-
-  #     click_on 'Create Contact'
-  #     expect(current_path).to eq(dashboard_path)
-  #     expect(Contact.count).to eq(1)
-  #     expect(page).to have_content('Contacts')
-  #     expect(page).to have_content('Contact created.')
-  #     expect(page).to have_link('Delete')
-
-  #     click_on 'Delete'
-  #     expect(current_path).to eq(dashboard_path)
-  #     expect(Contact.count).to eq(0)
-  #     expect(page).to have_content('Contacts')
-  #     expect(page).to have_content("Contact deleted.")
-  #     expect(page).to_not have_content(email)
-  #     expect(page).to_not have_content(phone)
-  #     expect(page).to_not have_content('Delete')
-  #   end
-
-    #   it 'can create a user account and delete it' do
-    #   expect(User.count).to eq(1)
-     
-    #   email = 'Bob@gmail.com'
-    #   password = 'password-test'
-   
-    #   visit dashboard_path
-    #   save_and_open_page
-    #   within(:css, "div#user-form") do
-    #     fill_in 'Email', with: email
-    #     fill_in 'Password', with: password
-    #   end
-
-    #   click_on 'Create User'
-    #   expect(current_path).to eq(dashboard_path)
-    #   expect(User.count).to eq(2)
-    #   expect(page).to have_content('Users')
-    #   expect(page).to have_content('User created.')
-    #   expect(page).to have_link('Delete')
-
-    #   click_on 'Delete'
-    #   expect(current_path).to eq(dashboard_path)
-    #   expect(User.count).to eq(1)
-    #   expect(page).to have_content('Users')
-    #   expect(page).to have_content("User deleted.")
-    #   expect(page).to_not have_content(email)
-    #   expect(page).to_not have_content('Delete')
-    # end
   end
 end
