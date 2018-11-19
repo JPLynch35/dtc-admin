@@ -105,6 +105,30 @@ describe 'an admin' do
       expect(page).to_not have_content('Delete')
     end
 
+    it 'will not create a donation if missing required information' do
+      expect(Donation.count).to eq(0)
+      name = 'Bob'
+      email = 'Bob@gmail.com'
+      city = 'Denver'
+      state = 'CO'
+      date = Date.today
+
+      visit dashboard_path
+
+      within(:css, "div#donate-form") do
+        fill_in "donation[date]", with: date
+        fill_in "donation[name]", with: name
+        fill_in "donation[email]", with: email
+        fill_in "donation[city]", with: city
+        fill_in "donation[state]", with: state
+      end
+
+      click_on 'Add Donation'
+
+      expect(page).to have_content('Donation was not created.')
+      expect(Donation.count).to eq(0)
+    end
+
     it 'can see subtotals for credit and check donations' do
       customer1 = Stripe::Customer.create({
         source: stripe_helper.generate_card_token(
