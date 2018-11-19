@@ -38,5 +38,43 @@ describe 'an admin' do
       expect(page).to have_content("User deleted.")
       expect(page).to_not have_content(email)
     end
+
+    it 'will not create a user if the email is invalid' do
+      expect(User.count).to eq(1)
+      
+      email = 'bob1616'
+      password = 'password-test'
+    
+      visit dashboard_path
+      within(:css, "div#user-form") do
+        fill_in 'user-email', with: email
+        fill_in 'user-password', with: password
+      end
+
+      click_on 'Add User'
+
+      expect(page).to have_content('User was not created.')
+      expect(User.count).to eq(1)
+      expect(page).to_not have_content(email)
+    end
+
+    it 'will not create a user if the password is invalid' do
+      expect(User.count).to eq(1)
+      
+      email = 'bob1616@gmail.com'
+      password = 'pass'
+    
+      visit dashboard_path
+      within(:css, "div#user-form") do
+        fill_in 'user-email', with: email
+        fill_in 'user-password', with: password
+      end
+
+      click_on 'Add User'
+
+      expect(page).to have_content('User was not created.')
+      expect(User.count).to eq(1)
+      expect(page).to_not have_content(email)
+    end
   end
 end
