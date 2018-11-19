@@ -60,17 +60,17 @@ input:-webkit-autofill{
   margin-top: .5rem;
 }
 
-.tabs-background{
+.tabs.is-boxed a{
+  color: black;
+  border-color: white;
   background-color: rgba(255, 255, 255, 0.76);
   font-family: 'Open Sans', sans-serif;
-}
-
-.tabs a{
-  color: black;
+  border-radius: 0;
 }
 
 .tabs.is-boxed li.is-active a{
   color: white;
+  border-color: white;
   background-color: rgb(64, 69, 71);
 }
 
