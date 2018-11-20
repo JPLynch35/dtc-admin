@@ -1,11 +1,9 @@
-<section class="hero is-info is-fullheight">
+<section class="hero is-fullheight" id="edit-account">
   <div class="hero-body">
     <div class="devise-box">
       <h2 class="title is-2">Edit My Account</h2>
-
         <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f| %>
         <%= devise_error_messages! %>
-
           <div class="field">
             <div class="control has-icons-left">
             <%= f.email_field :email, class: "input is-medium is-info", placeholder: "email" %>
@@ -14,15 +12,14 @@
               </span>
             </div>
           </div>
-
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
           <div class="field">
             <p>Leave password blank if you don't want to change it.</p>
-            <p>To update, password must be 
+            <p>To update, password must be at least
               <% if @minimum_password_length %>
-              <%= @minimum_password_length %> characters minimum.
+              <%= @minimum_password_length %> characters.
               <% end %>
             </p>
             <div class="control has-icons-left">
@@ -32,9 +29,8 @@
               </span>
             </div>
           </div>
-
           <div class="field">
-          <%= f.label :password_confirmation %><br />
+          <p><%= f.label :password_confirmation %></p>
             <div class="control has-icons-left">
               <%= f.password_field :password_confirmation, class: "input is-medium is-info", placeholder: "new password" %>
                 <span class="icon is-small is-left">
@@ -42,9 +38,8 @@
               </span>
             </div>
           </div>
-
           <div class="field">
-            <%= f.label :current_password %> is required to submit changes.<br />
+            <p><%= f.label :current_password %> is required to submit changes.</p>
             <div class="control has-icons-left">
             <%= f.password_field :current_password, class: "input is-medium is-info", placeholder: "current password" %>
               <span class="icon is-small is-left">
