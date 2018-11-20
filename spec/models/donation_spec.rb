@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Donation, type: :model do
   describe "attributes" do
     it { should validate_presence_of(:amount) }
+    it { should validate_numericality_of(:amount) }
     it { should validate_presence_of(:donation_type) }
     it { should validate_presence_of(:date) }
     it { should_not validate_presence_of(:stripe_id) }
