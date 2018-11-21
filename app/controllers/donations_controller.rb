@@ -3,7 +3,7 @@ class DonationsController < ApplicationController
   def create
     donation = Donation.create(modified_donation_params)
     if donation.save 
-      redirect_to dashboard_path, :alert => "Donation created."
+      redirect_to dashboard_path, :alert => "Donation from #{donation.name} has been added."
     else
       redirect_to dashboard_path, :alert => "Donation was not created."
     end
@@ -12,7 +12,7 @@ class DonationsController < ApplicationController
   def destroy
     donation = Donation.find(params[:id])
     donation.destroy!
-    redirect_to dashboard_path, :notice => "Donation deleted."
+    redirect_to dashboard_path, :notice => "Donation from #{donation.name} has been deleted."
   end
 
   private
