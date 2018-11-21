@@ -27,7 +27,7 @@ describe 'an admin' do
       click_on 'Add User'
 
       expect(User.count).to eq(2)
-      expect(page).to have_content('User created.')
+      expect(page).to have_content("#{email} now has access to the Dress The Child donations dashboard.")
       expect(page).to have_content(email)
 
       within(:css, "#users-table") do
@@ -35,8 +35,7 @@ describe 'an admin' do
       end
 
       expect(User.count).to eq(1)
-      expect(page).to have_content("User deleted.")
-      expect(page).to_not have_content(email)
+      expect(page).to have_content("#{email} no longer has access to the Dress The Child donations dashboard.")
     end
 
     it 'will not create a user if the email is invalid' do

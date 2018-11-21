@@ -33,7 +33,7 @@ describe 'an admin' do
 
       expect(Contact.count).to eq(1)
 
-      expect(page).to have_content('Contact created.')
+      expect(page).to have_content("#{name} has been added to your contact list.")
       within(:css, "#contacts-table") do
         expect(page).to have_content(name)
         expect(page).to have_content(email)
@@ -47,8 +47,7 @@ describe 'an admin' do
 
       expect(Contact.count).to eq(0)
 
-      expect(page).to have_content("Contact deleted.")
-      expect(page).to_not have_content(name)
+      expect(page).to have_content("#{name} has been removed from your contact list.")
       expect(page).to_not have_content(email)
       expect(page).to_not have_content(phone)
       expect(page).to_not have_content(organization)

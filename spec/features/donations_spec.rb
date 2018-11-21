@@ -27,7 +27,7 @@ describe 'an admin' do
         created: Date.today.to_time.to_i
       })
       visit dashboard_path
-      expect(page).to have_content('Johnny App')
+      expect(page).to have_content('Johnny app')
       expect(page).to have_content('Denver')
       expect(page).to have_content('CO')
       expect(page).to have_content('johnny214@gmail.com')
@@ -85,7 +85,7 @@ describe 'an admin' do
       click_on 'Add Donation'
       expect(Donation.count).to eq(1)
       expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content('Donation created.')
+      expect(page).to have_content("Donation from #{name} has been added.")
       expect(page).to have_content(name)
       expect(page).to have_content(city)
       expect(page).to have_content(state)
@@ -98,11 +98,10 @@ describe 'an admin' do
 
       expect(current_path).to eq(dashboard_path)
       expect(Donation.count).to eq(0)
-      expect(page).to have_content("Donation deleted.")
+      expect(page).to have_content("Donation from #{name} has been deleted.")
       expect(page).to_not have_content(city)
       expect(page).to_not have_content(state)
       expect(page).to_not have_content(amount)
-      expect(page).to_not have_content('Delete')
     end
 
     it 'will not create a donation if missing required information' do
