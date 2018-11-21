@@ -29,8 +29,8 @@ body{
   min-height:100vh;
 }
 
-input:-webkit-autofill{
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
+input:-webkit-autofill{ 
+  box-shadow: 0 0 0px 1000px white inset; 
 }
 
 .devise-box{
