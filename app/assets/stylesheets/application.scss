@@ -24,8 +24,9 @@ $font-family: 'Oswald', sans-serif;
 $font-family: 'Roboto', sans-serif;
 @import "bulma";
 
-html{
+body{
   background-color: rgb(64, 69, 71);
+  min-height:100vh;
 }
 
 input:-webkit-autofill{
@@ -146,7 +147,7 @@ input:-webkit-autofill{
   color: white;
 }
 
-#main, #contacts, #users{
+#main{
   text-align: center;
   margin-top: 1rem;
 }
@@ -158,8 +159,8 @@ input:-webkit-autofill{
 
 #filter-form{
   font-family: 'Roboto', sans-serif;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 #start, #end{
@@ -177,7 +178,7 @@ input{
 
 .table{
   background-color: rgb(64, 69, 71);
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 thead{
@@ -223,3 +224,32 @@ p{
 #back-btn {
   margin-top: .5rem;
 }
+
+#contacts, #users{
+  text-align: center;
+  margin-top: 3rem;
+}
+
+#users-table{
+  width: 45rem;
+  margin-bottom: 5rem;
+}
+
+#contacts-table{
+  margin-bottom: 5rem;
+  align-items: center;
+}
+
+.notification > button.delete {
+  border: none;
+} 
+
+.is-hidden {
+  display: none;
+}
+
+#edit-account-hero, #sign-in-hero,
+#forgot-password-hero{
+  background-color: rgb(64, 69, 71);
+}
+

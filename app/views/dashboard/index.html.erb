@@ -1,5 +1,3 @@
-<%# Nav %>
-
 <nav class="navbar is-white">
   <%= image_tag "DressTheChild.png", class: "dtc-logo" %>
   <div class="navbar-end">
@@ -34,8 +32,13 @@
   </ul>
 </div>
 
-<div class="container" id="main">
+<div class="notification is-primary">
+  <button class="delete"></button>
+  <h3><%= alert %></h3>
+  <h3><%= notice %></h3>
+</div>
 
+<div class="container" id="main">
   <div class="circles">
     <div class="metric-square">
       Total Donors
@@ -68,29 +71,29 @@
   </div>
 
   <div class="container" id="donations-table">
-    <table class="table is-narrow is-hoverable is-fullwidth">
+    <table class="table is-fullwidth is-hoverable">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Email</th>
-          <th>Amount</th>
-          <th>Date</th>
+          <th class="has-text-centered">Name</th>
+          <th class="has-text-centered">City</th>
+          <th class="has-text-centered">State</th>
+          <th class="has-text-centered">Email Address</th>
+          <th class="has-text-centered">Amount</th>
+          <th class="has-text-centered">Date</th>
           <th>Type</th>
         </tr>
       </thead>
       <tbody>
         <% @presenter.retrieve_all_donations.each do |donation| %>
           <tr>
-            <td class="name"><%= donation.name %></td>
-            <td class="city"><%= donation.city %></td>
-            <td class="state"><%= donation.state %></td>
-            <td class="email"><%= donation.email %></td>
-            <td class="amount"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
-            <td class="date"><%= donation.date %></td>
+            <td class="name has-text-centered"><%= donation.name %></td>
+            <td class="city has-text-centered"><%= donation.city %></td>
+            <td class="state has-text-centered"><%= donation.state %></td>
+            <td class="email has-text-centered"><%= donation.email %></td>
+            <td class="amount has-text-centered"><%= number_to_currency(donation.amount.to_i / 100.00, unit: '$') %></td>
+            <td class="date has-text-centered"><%= donation.date %></td>
             <% if donation.donation_type == "Check" %>
-              <td width=9%><%= donation.donation_type %> <%= link_to donation_path(donation), class:'donation-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
+            <td class="delete-donation"><%= donation.donation_type %> <%= link_to donation_path(donation), class:'donation-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
             <% else %>
               <td class="type"><%= donation.donation_type %></td>
             <% end %>
@@ -114,30 +117,30 @@
       <%= f.submit "Add Donation", class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
-
 </div>
+<br>
+<br>
 
 <div class="container is-hidden" id="contacts">
-
   <div class="container" id="contacts-table">
-    <table class="table is-narrow is-hoverable is-fullwidth">
+    <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Organization</th>
+          <th class="has-text-centered">Name</th>
+          <th class="has-text-centered">Phone</th>
+          <th class="has-text-centered">Email Address</th>
+          <th class="has-text-centered">Organization</th>
+          <th class="has-text-centered">Delete</th>
         </tr>
       </thead>
       <tbody>
         <% @presenter.retrieve_contacts.each do |contact| %>
           <tr>
-            <td class="name"><%= contact.name %></td>
-            <td class="phone"><%= contact.phone %></td>
-            <td class="email"><%= contact.email %></td>
-            <td class="organization"><%= contact.organization %>
-              <%= link_to contact_path(contact), class:'contact-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
-            </td>
+            <td class="name has-text-centered"><%= contact.name %></td>
+            <td class="phone has-text-centered"><%= contact.phone %></td>
+            <td class="email has-text-centered"><%= contact.email %></td>
+            <td class="organization has-text-centered"><%= contact.organization %> </td>
+            <td class="delete-user has-text-centered"><%= link_to contact_path(contact), class:'contact-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
@@ -154,24 +157,24 @@
       <%= f.submit "Add Contact", class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
-
 </div>
 
 <div class="container is-hidden" id="users">
-  
   <div class="container" id="users-table">
-    <table class="table is-narrow is-hoverable is-fullwidth">
+    <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
-          <th>Email</th>
+          <th class="has-text-centered">Created</th>
+          <th class="has-text-centered">Account Email</th>
+          <th class="has-text-centered">Delete</th>
         </tr>
       </thead>
       <tbody>
         <% @presenter.retrieve_users.each do |user| %>
           <tr>
-            <td class="email"><%= user.email %>
-              <%= link_to user_path(user), class:'user-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %>
-            </td>
+            <td class="has-text-centered"><%= user.created_at.to_date %>
+            <td class="has-text-centered"><%= user.email %></td>
+            <td class="has-text-centered"><%= link_to user_path(user), class:'user-delete', method: :delete, data: { confirm: 'Are you sure you want to delete this donation?' } do %><i class="far fa-trash-alt"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
@@ -186,7 +189,6 @@
       <%= f.submit "Add User", class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
-
 </div>
 
 <script>
@@ -196,6 +198,19 @@
   const mainTabClasses = document.getElementById("main-tab").classList;
   const contactsTabClasses = document.getElementById("contacts-tab").classList;
   const usersTabClasses = document.getElementById("users-tab").classList;
+  var deleteButtons = document.getElementsByClassName('delete');
+
+  for (var i = 0; i < deleteButtons.length; i++) {
+  deleteButtons[i].addEventListener('click', dismiss); 
+  };
+
+  function dismiss(e) {
+    this.parentNode.classList.add('is-hidden');
+  };
+
+  function notification() {
+
+  };
 
   function switchToMain() {
     hideAll();
@@ -226,4 +241,5 @@
     contactsTabClasses.remove("is-active");
     usersTabClasses.remove("is-active");
   };
+
 </script>
