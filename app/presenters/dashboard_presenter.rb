@@ -56,10 +56,6 @@ class DashboardPresenter
     (retrieve_all_total / 100).floor.to_i
   end
 
-  def list_headers
-    ['Name', 'City', 'State', 'Email', 'Amount', 'Date']
-  end
-
   private
   attr_reader :start_date, :end_date
 
