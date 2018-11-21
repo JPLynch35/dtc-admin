@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def create
     user = User.create(user_params)
     if user.save 
-      redirect_to dashboard_path, :alert => "User created."
+      redirect_to dashboard_path, :alert => "#{user.email} now has access to the Dress The Child donations dashboard."
     else
       redirect_to dashboard_path, :alert => "User was not created."
     end
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy!
-    redirect_to dashboard_path, :notice => "User deleted."
+    redirect_to dashboard_path, :notice => "#{user.email} no longer has access to the Dress The Child donations dashboard."
   end
 
   private

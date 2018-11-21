@@ -4,7 +4,7 @@ class DonationCreator
     unless Donation.find_by_stripe_id(payment[:id])
       Donation.create(
         stripe_id:      payment[:id], 
-        name:           payment[:source][:name], 
+        name:           payment[:source][:name].capitalize, 
         amount:         payment[:amount],
         donation_type: 'Credit',
         city:           payment[:source][:address_city], 
