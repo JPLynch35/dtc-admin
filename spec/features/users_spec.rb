@@ -1,5 +1,26 @@
 require 'rails_helper'
 
+describe 'a user' do
+  describe 'visiting the users tab' do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+
+    before :each do
+      allow_any_instance_of(ApplicationController).to receive(:authenticate_user!).and_return(true)
+      user1 = create(:user, admin:'false')
+      @user2 = create(:user, email: 'Bob435@gmail.com', admin:'false')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+    end
+
+    it 'cannot see, create or delete users' do
+      visit dashboard_path
+
+      expect(page).to_not have_content(@user2.email)
+    end
+  end
+end
+
 describe 'an admin' do
   describe 'visiting the users tab' do
     let(:stripe_helper) { StripeMock.create_test_helper }
