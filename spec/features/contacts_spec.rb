@@ -12,7 +12,7 @@ describe 'an admin' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
 
-   it 'can create and delete a contact' do
+   it 'can successfully create and delete a contact' do
       expect(Contact.count).to eq(0)
      
       name = 'Bob'
@@ -51,6 +51,21 @@ describe 'an admin' do
       expect(page).to_not have_content(email)
       expect(page).to_not have_content(phone)
       expect(page).to_not have_content(organization)
+    end
+
+    it 'can fail to create a contact' do
+      visit dashboard_path
+       
+      phone = '345-654-3245'
+
+      within(:css, "div#contact-form") do
+        fill_in 'contact-phone', with: phone
+      end
+
+      click_on 'Add Contact'
+
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content('Contact was not created.')
     end
   end
 end
