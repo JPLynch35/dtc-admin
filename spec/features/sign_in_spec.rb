@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'admin login workflow' do
   it 'allows registered admin to log in successfully' do
     user = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin = true)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit '/'
 
