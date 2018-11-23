@@ -163,6 +163,7 @@
 
 <div class="container is-hidden" id="users">
   <div class="container" id="users-table">
+    <% if current_user.admin? %>
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
@@ -190,6 +191,9 @@
       <%= f.text_field :password, class: 'input is-primary', placeholder: "password", id:"user-password" %></br>
       <%= f.submit "Add User", class: "button is-inverted is-outlined is-link" %>
     <% end %>
+  <% else %>
+    <p>You do not have access to this page.</p>
+  <% end %>
   </div>
 </div>
 

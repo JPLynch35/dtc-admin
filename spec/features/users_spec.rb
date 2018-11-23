@@ -17,6 +17,7 @@ describe 'a user' do
       visit dashboard_path
 
       expect(page).to_not have_content(@user2.email)
+      expect(page).to have_content('You do not have access to this page.')
     end
   end
 end
