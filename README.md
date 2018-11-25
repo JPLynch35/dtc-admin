@@ -27,7 +27,7 @@ Sensitive check and credit card data are never tracked by DressTheChild.org.
 
 ## Contributors to Repo
 
-* [Cody Taft](https://github.com/codytaft)
+* [JP Lynch](https://github.com/JPLynch35)
 * [Emmie Hayes](https://github.com/emmiehayes)
 
 
