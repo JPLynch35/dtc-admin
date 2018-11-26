@@ -1,56 +1,39 @@
 # Dress The Child Admin Dashboard
 
-Dress The Child Admin Dashboard is a web portal for the Dress The Child Donation site.  It allows admins to track the electronic donations, along with CRUD functionality to manually track check donations.
+This dashboard provides a place for the Dress The Child non-profit organization from Las Cruces, NM to manage donations coming in from DressTheChild.org alongside cash and check donations delivered by mail. Local area contacts and volunteers can also be stored.
 
-## Production Site
----
-Coming soon
+Sensitive check and credit card data are never tracked by DressTheChild.org.   
 
-## Navigating the App
----
-All functionality is on the main dashboard page:
-* Filter DOnations: Filters the electronic and check donations by date, defaults to all donations within the current calendar year.
-* Add Check Donation: Create a donation with a donation_type of "Check". Check donations are tracked in the lower table.
+** All views shown below capture fake data in development
 
-## Getting Started
----
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+<img alt="donation-management" src="https://cl.ly/09914a85df8a/Screen%252520Shot%2525202018-11-21%252520at%2525201.00.56%252520PM.jpg">
+<img alt="contacts-management" src="https://cl.ly/005f1fa4de86/Screen%252520Shot%2525202018-11-21%252520at%2525201.01.10%252520PM.jpg">
+<img alt="user-management" src="https://cl.ly/5d38702ca784/Screen%252520Shot%2525202018-11-21%252520at%2525201.01.21%252520PM.jpg">
+<img alt="sign-in-page" src="https://cl.ly/e27974b98675/Screen%252520Shot%2525202018-11-21%252520at%2525201.02.00%252520PM.jpg">
+<img alt="edit-account-page" src="https://cl.ly/50dac9b5657f/Screen%252520Shot%2525202018-11-21%252520at%2525201.01.47%252520PM.jpg">
+<img alt="forgot-password-page" src="https://cl.ly/d966e5e59cb2/Screen%252520Shot%2525202018-11-21%252520at%2525201.02.20%252520PM.jpg">
+<img alt="instructions-send-page" src="https://cl.ly/a1544b83a4fc/Screen%252520Shot%2525202018-11-21%252520at%2525201.02.13%252520PM.jpg">
 
-### Prerequisites
 
-This application was created in Rails v5.1.6, utilizing Ruby v2.4.1.
+### Tech
 
-### Installing
+- Rails v5.1.6
+- Ruby v2.4.1
+- Vanilla JS
+- Stripe API
+- Devise Authentication
+- Bulma CSS Framework
 
-Clone the project down locally to your machine.  
-```
-git clone https://github.com/emmiehayes/dtc-admin.git
-```  
-Inside the project directory, prepare the gems for development with bundler.  
-```
-bundle install
-``` 
-Now create the database and prep the migrations.
-```
-rake db:{create,migrate}
-``` 
 
-### Running the tests
+## Contributors to Repo
 
-This application is tested with RSpec.  In order to run this test suite, simply call upon RSpec in the terminal while in the project folder.  To produce passing tests, the app requires a Stripe API key which is not provided.
-```
-rspec
-```
-
-## Built With
----
-* Ruby 2.4.1- The code language
-* Rails 5.1.6- Ruby's web framework
-* Stripe API
-
-## Contributors
----
-* [Cody Taft](https://github.com/codytaft)
+* [JP Lynch](https://github.com/JPLynch35)
 * [Emmie Hayes](https://github.com/emmiehayes)
+
+
+## Contributors to Project
+
 * [Jesse McFadden](https://github.com/JesseMcBrennan)
 * [JP Lynch](https://github.com/JPLynch35)
+* [Cody Taft](https://github.com/codytaft)
+* [Emmie Hayes](https://github.com/emmiehayes)
