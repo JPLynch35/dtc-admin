@@ -5,7 +5,7 @@ class DonationCreator
       Donation.create(
         stripe_id:      payment[:id], 
         name:           payment[:source][:name].capitalize, 
-        amount:         payment[:amount],
+        amount:         ((payment[:amount] - 30) / 1.0233).ceil,
         donation_type: 'Credit',
         city:           payment[:source][:address_city], 
         state:          payment[:source][:address_state],
