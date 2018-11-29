@@ -33,7 +33,7 @@ describe 'an admin' do
       expect(page).to have_content('Denver')
       expect(page).to have_content('CO')
       expect(page).to have_content('johnny214@gmail.com')
-      expect(page).to have_content('$25.00')
+      expect(page).to have_content('$24.14')
     end
 
     it 'can see a list of check donations' do
@@ -240,7 +240,7 @@ describe 'an admin' do
       
       visit dashboard_path
       within('.donations-circle') do
-        expect(page).to have_content('$52')
+        expect(page).to have_content('$50')
       end
     end
 
@@ -352,7 +352,7 @@ describe 'an admin' do
       
       visit dashboard_path
       within('.kids-circle') do
-        expect(page).to have_content('52')
+        expect(page).to have_content('51')
       end
     end
   end
