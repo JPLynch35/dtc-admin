@@ -3,9 +3,9 @@
   <%= image_tag "DressTheChild.png", class: "dtc-logo" %>
   <div class="navbar-end">
     <div class="navbar-item">
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "button is-outlined is-danger", id: "sign-out-btn" %>
+      <%= link_to t('signout'), destroy_user_session_path, method: :delete, class: "button is-outlined is-danger", id: "sign-out-btn" %>
       <br>
-      <%= link_to "Change Password", edit_user_registration_path, class: "button is-outlined is-dark" %> 
+      <%= link_to t('changepassword'), edit_user_registration_path, class: "button is-outlined is-dark" %> 
     </div>
   </div>
 </nav>
