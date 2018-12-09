@@ -55,7 +55,7 @@ en:
         amount: "Amount"
         date: "Date"
         type: "Type"
-      check_creation:
+      donation_creation:
         instructions: "Fill out the form to add a new check or cash donation."
         add: "Add Donation"
       contact_attributes:

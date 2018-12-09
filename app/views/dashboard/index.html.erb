@@ -113,7 +113,7 @@
 
 <%-# Add Check/Cash Donation Form -%>
   <div class="container" id="donate-form">
-    <p><%= t('dashboard.index.check_creation.instructions') %></p>
+    <p><%= t('dashboard.index.donation_creation.instructions') %></p>
     <%= form_for @presenter.create_new_donation do |f| %>
       <%= f.text_field :name, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.name'), id:"name" %>
       <%= f.text_field :city, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.city'), id:"city" %>
@@ -123,7 +123,7 @@
       <%= f.date_field :date, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.date'), id:"date" %>
       <%= f.hidden_field :donation_type, value: 'Check' %>
       <%= f.hidden_field :stripe_id, value: '' %>
-      <%= f.submit t('dashboard.index.check_creation.add'), class: "button is-inverted is-outlined is-link" %>
+      <%= f.submit t('dashboard.index.donation_creation.add'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
 </div>
