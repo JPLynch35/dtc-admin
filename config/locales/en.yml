@@ -36,9 +36,9 @@ en:
   dashboard:
     index:
       tabs:
-        donations_tab: "Donations"
-        contacts_tab: "Contacts"
-        users_tab: "Users"
+        donations: "Donations"
+        contacts: "Contacts"
+        users: "Users"
       analytics:
         total_donors: "Total Donors"
         total_stripe: "Stripe"
@@ -57,4 +57,21 @@ en:
         type: "Type"
       check_creation:
         instructions: "Fill out the form to add a new check or cash donation."
-        add_donation: "Add Donation"
+        add: "Add Donation"
+      contact_attributes:
+        name: "Name"
+        phone: "Phone"
+        email: "Email Address"
+        organization: "Organization"
+        delete: "Delete"
+      contact_creation:
+        instructions: "Fill out the form to add a new contact."
+        add: "Add Contact"
+      user_attributes:
+        created: "Created"
+        email: "Email Address"
+        delete: "Delete"
+        password: "Password"
+      user_creation:
+        instructions: "Fill out the form to add a new user."
+        add: "Add User"

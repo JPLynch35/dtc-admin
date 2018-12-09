@@ -16,19 +16,19 @@
     <li class="is-active" id="main-tab">
       <a onClick="switchToMain()">
         <span class="icon is-small"><i class="fas fa-hand-holding-usd" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.tabs.donations_tab') %></span>
+        <span><%= t('dashboard.index.tabs.donations') %></span>
       </a>
     </li>
     <li id="contacts-tab">
       <a onClick="switchToContacts()">
         <span class="icon is-small"><i class="fas fa-users" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.tabs.contacts_tab') %></span>
+        <span><%= t('dashboard.index.tabs.contacts') %></span>
       </a>
     </li>
     <li id="users-tab">
       <a onClick="switchToUsers()">
         <span class="icon is-small"><i class="fas fa-user-edit" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.tabs.users_tab') %></span>
+        <span><%= t('dashboard.index.tabs.users') %></span>
       </a>
     </li>
   </ul>
@@ -123,7 +123,7 @@
       <%= f.date_field :date, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.date'), id:"date" %>
       <%= f.hidden_field :donation_type, value: 'Check' %>
       <%= f.hidden_field :stripe_id, value: '' %>
-      <%= f.submit t('dashboard.index.check_creation.add_donation'), class: "button is-inverted is-outlined is-link" %>
+      <%= f.submit t('dashboard.index.check_creation.add'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
 </div>
@@ -137,11 +137,11 @@
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
-          <th class="has-text-centered">Name</th>
-          <th class="has-text-centered">Phone</th>
-          <th class="has-text-centered">Email Address</th>
-          <th class="has-text-centered">Organization</th>
-          <th class="has-text-centered">Delete</th>
+          <th class="has-text-centered"><%= t('dashboard.index.contact_attributes.name') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.contact_attributes.phone') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.contact_attributes.email') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.contact_attributes.organization') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.contact_attributes.delete') %></th>
         </tr>
       </thead>
       <tbody>
@@ -160,13 +160,13 @@
 
 <%-# Add Contact Form -%>
   <div class="container" id="contact-form">
-    <p>Fill out the form to add a new contact.</p>
+    <p><%= t('dashboard.index.contact_creation.instructions') %></p>
     <%= form_for @presenter.create_new_contact do |f| %>
-      <%= f.text_field :name, class: 'input is-primary', placeholder: "name", id:"contact-name" %>
-      <%= f.text_field :phone, class: 'input is-primary', placeholder: "phone", id:"contact-phone" %></br>
-      <%= f.text_field :email, class: 'input is-primary', placeholder: "email", id:"contact-email" %>
-      <%= f.text_field :organization, class: 'input is-primary', placeholder: "organization", id:"contact-organization" %></br>
-      <%= f.submit "Add Contact", class: "button is-inverted is-outlined is-link" %>
+      <%= f.text_field :name, class: 'input is-primary', placeholder: t('dashboard.index.contact_attributes.name'), id:"contact-name" %>
+      <%= f.text_field :phone, class: 'input is-primary', placeholder: t('dashboard.index.contact_attributes.phone'), id:"contact-phone" %></br>
+      <%= f.text_field :email, class: 'input is-primary', placeholder: t('dashboard.index.contact_attributes.email'), id:"contact-email" %>
+      <%= f.text_field :organization, class: 'input is-primary', placeholder: t('dashboard.index.contact_attributes.organization'), id:"contact-organization" %></br>
+      <%= f.submit t('dashboard.index.contact_creation.add'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
 </div>
@@ -178,9 +178,9 @@
     <table class="table is-hoverable is-fullwidth">
       <thead>
         <tr>
-          <th class="has-text-centered">Created</th>
-          <th class="has-text-centered">Account Email</th>
-          <th class="has-text-centered">Delete</th>
+          <th class="has-text-centered"><%= t('dashboard.index.user_attributes.created') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.user_attributes.email') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.user_attributes.delete') %></th>
         </tr>
       </thead>
       <tbody>
@@ -197,11 +197,11 @@
 
 <%-# Add User Form -%>
   <div class="container" id="user-form">
-    <p>Fill out the form to add a new user.</p>
+    <p><%= t('dashboard.index.user_creation.instructions') %></p>
     <%= form_for @presenter.create_new_user do |f| %>
-      <%= f.text_field :email, class: 'input is-primary', placeholder: "email", id:"user-email" %>
-      <%= f.text_field :password, class: 'input is-primary', placeholder: "password", id:"user-password" %></br>
-      <%= f.submit "Add User", class: "button is-inverted is-outlined is-link" %>
+      <%= f.text_field :email, class: 'input is-primary', placeholder: t('dashboard.index.user_attributes.email'), id:"user-email" %>
+      <%= f.text_field :password, class: 'input is-primary', placeholder: t('dashboard.index.user_attributes.password'), id:"user-password" %></br>
+      <%= f.submit t('dashboard.index.user_creation.add'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   <% else %>
     <p>You do not have access to this page.</p>
@@ -256,5 +256,4 @@
     contactsTabClasses.remove("is-active");
     usersTabClasses.remove("is-active");
   };
-
 </script>
