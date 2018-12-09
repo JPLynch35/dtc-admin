@@ -35,6 +35,8 @@ en:
     change_password: "Change Password"
   dashboard:
     index:
+      admin:
+        restricted_page: "You do not have access to this page."
       tabs:
         donations: "Donations"
         contacts: "Contacts"

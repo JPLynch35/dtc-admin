@@ -204,7 +204,7 @@
       <%= f.submit t('dashboard.index.user_crud.add'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   <% else %>
-    <p>You do not have access to this page.</p>
+    <p><%= t('dashboard.index.admin.restricted_page') %></p>
   <% end %>
   </div>
 </div>
