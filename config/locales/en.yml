@@ -55,23 +55,26 @@ en:
         amount: "Amount"
         date: "Date"
         type: "Type"
-      donation_creation:
+      donation_crud:
         instructions: "Fill out the form to add a new check or cash donation."
         add: "Add Donation"
+        confirm_delete: "Are you sure you want to delete this donation?"
       contact_attributes:
         name: "Name"
         phone: "Phone"
         email: "Email Address"
         organization: "Organization"
         delete: "Delete"
-      contact_creation:
+      contact_crud:
         instructions: "Fill out the form to add a new contact."
         add: "Add Contact"
+        confirm_delete: "Are you sure you want to delete this contact?"
       user_attributes:
         created: "Created"
         email: "Email Address"
         delete: "Delete"
         password: "Password"
-      user_creation:
+      user_crud:
         instructions: "Fill out the form to add a new user."
         add: "Add User"
+        confirm_delete: "Are you sure you want to delete this user?"
