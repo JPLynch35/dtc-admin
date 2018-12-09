@@ -1,82 +1,54 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   navbar:
-    sign_out: "Sign Out"
-    change_password: "Change Password"
+    sign_out: 'Sign Out'
+    change_password: 'Change Password'
   dashboard:
     index:
       admin:
-        restricted_page: "You do not have access to this page."
+        restricted_page: 'You do not have access to this page.'
       tabs:
-        donations: "Donations"
-        contacts: "Contacts"
-        users: "Users"
-      analytics:
-        total_donors: "Total Donors"
-        total_stripe: "Stripe"
-        total_raised: "Total Raised"
-        total_check: "Checks"
-        total_kids: "Kids Sponsored"
-      date_filter:
-        filter_donations: "Filter Donations"
-      donation_attributes:
-        name: "Name"
-        city: "City"
-        state: "State"
-        email: "Email Address"
-        amount: "Amount"
-        date: "Date"
-        type: "Type"
-      donation_crud:
-        instructions: "Fill out the form to add a new check or cash donation."
-        add: "Add Donation"
-        confirm_delete: "Are you sure you want to delete this donation?"
-      contact_attributes:
-        name: "Name"
-        phone: "Phone"
-        email: "Email Address"
-        organization: "Organization"
-        delete: "Delete"
-      contact_crud:
-        instructions: "Fill out the form to add a new contact."
-        add: "Add Contact"
-        confirm_delete: "Are you sure you want to delete this contact?"
-      user_attributes:
-        created: "Created"
-        email: "Email Address"
-        delete: "Delete"
-        password: "Password"
-      user_crud:
-        instructions: "Fill out the form to add a new user."
-        add: "Add User"
-        confirm_delete: "Are you sure you want to delete this user?"
+        donations: 'Donations'
+        contacts: 'Contacts'
+        users: 'Users'
+      donations:
+        analytics:
+          total_donors: 'Total Donors'
+          total_stripe: 'Stripe'
+          total_raised: 'Total Raised'
+          total_check: 'Checks'
+          total_kids: 'Kids Sponsored'
+        date_filter:
+          filter_donations: 'Filter Donations'
+        attributes:
+          name: 'Name'
+          city: 'City'
+          state: 'State'
+          email: 'Email Address'
+          amount: 'Amount'
+          date: 'Date'
+          type: 'Type'
+        crud:
+          instructions: 'Fill out the form to add a new check or cash donation.'
+          add: 'Add Donation'
+          confirm_delete: 'Are you sure you want to delete this donation?'
+      contacts:
+        attributes:
+          name: 'Name'
+          phone: 'Phone'
+          email: 'Email Address'
+          organization: 'Organization'
+          delete: 'Delete'
+        crud:
+          instructions: 'Fill out the form to add a new contact.'
+          add: 'Add Contact'
+          confirm_delete: 'Are you sure you want to delete this contact?'
+      users:
+        attributes:
+          created: 'Created'
+          email: 'Email Address'
+          delete: 'Delete'
+          password: 'Password'
+        crud:
+          instructions: 'Fill out the form to add a new user.'
+          add: 'Add User'
+          confirm_delete: 'Are you sure you want to delete this user?'
