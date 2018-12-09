@@ -82,13 +82,13 @@
     <table class="table is-fullwidth is-hoverable">
       <thead>
         <tr>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.name_header') %></th>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.city_header') %></th>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.state_header') %></th>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.email_header') %></th>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.amount_header') %></th>
-          <th class="has-text-centered"><%= t('dashboard.index.donation_table.date_header') %></th>
-          <th><%= t('dashboard.index.donation_table.type_header') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.name') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.city') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.state') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.email') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.amount') %></th>
+          <th class="has-text-centered"><%= t('dashboard.index.donation_attributes.date') %></th>
+          <th><%= t('dashboard.index.donation_attributes.type') %></th>
         </tr>
       </thead>
       <tbody>
@@ -113,17 +113,17 @@
 
 <%-# Add Check/Cash Donation Form -%>
   <div class="container" id="donate-form">
-    <p>Fill out the form to add a new check or cash donation.</p>
+    <p><%= t('dashboard.index.check_creation.instructions') %></p>
     <%= form_for @presenter.create_new_donation do |f| %>
-      <%= f.text_field :name, class: 'input is-primary', placeholder: "name", id:"name" %>
-      <%= f.text_field :city, class: 'input is-primary', placeholder: "city", id:"city" %>
-      <%= f.text_field :state, class: 'input is-primary', placeholder: "state", id:"state" %>
-      <%= f.text_field :email, class: 'input is-primary', placeholder: "email", id:"email" %>
-      <%= f.number_field :amount, class: 'input is-primary', placeholder: "amount", id:"amount" %>
-      <%= f.date_field :date, class: 'input is-primary', placeholder: "date", id:"date" %>
+      <%= f.text_field :name, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.name'), id:"name" %>
+      <%= f.text_field :city, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.city'), id:"city" %>
+      <%= f.text_field :state, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.state'), id:"state" %>
+      <%= f.text_field :email, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.email'), id:"email" %>
+      <%= f.number_field :amount, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.amount'), id:"amount" %>
+      <%= f.date_field :date, class: 'input is-primary', placeholder: t('dashboard.index.donation_attributes.date'), id:"date" %>
       <%= f.hidden_field :donation_type, value: 'Check' %>
       <%= f.hidden_field :stripe_id, value: '' %>
-      <%= f.submit "Add Donation", class: "button is-inverted is-outlined is-link" %>
+      <%= f.submit t('dashboard.index.check_creation.add_donation'), class: "button is-inverted is-outlined is-link" %>
     <% end %>
   </div>
 </div>

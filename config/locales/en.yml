@@ -47,13 +47,14 @@ en:
         total_kids: "Kids Sponsored"
       date_filter:
         filter_donations: "Filter Donations"
-      donation_table:
-        name_header: "Name"
-        city_header: "City"
-        state_header: "State"
-        email_header: "Email Address"
-        amount_header: "Amount"
-        date_header: "Date"
-        type_header: "Type"
+      donation_attributes:
+        name: "Name"
+        city: "City"
+        state: "State"
+        email: "Email Address"
+        amount: "Amount"
+        date: "Date"
+        type: "Type"
       check_creation:
         instructions: "Fill out the form to add a new check or cash donation."
+        add_donation: "Add Donation"
