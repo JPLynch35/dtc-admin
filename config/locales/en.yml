@@ -30,6 +30,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  signout: "Sign Out"
-  changepassword: "Change Password"
+  navbar:
+    sign_out: "Sign Out"
+    change_password: "Change Password"
+  dashboard:
+    index:
+      donations_tab: "Donations"
+      contacts_tab: "Contacts"
+      users_tab: "Users"
 
