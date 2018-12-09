@@ -16,19 +16,19 @@
     <li class="is-active" id="main-tab">
       <a onClick="switchToMain()">
         <span class="icon is-small"><i class="fas fa-hand-holding-usd" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.donations_tab') %></span>
+        <span><%= t('dashboard.index.tabs.donations_tab') %></span>
       </a>
     </li>
     <li id="contacts-tab">
       <a onClick="switchToContacts()">
         <span class="icon is-small"><i class="fas fa-users" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.contacts_tab') %></span>
+        <span><%= t('dashboard.index.tabs.contacts_tab') %></span>
       </a>
     </li>
     <li id="users-tab">
       <a onClick="switchToUsers()">
         <span class="icon is-small"><i class="fas fa-user-edit" aria-hidden="true"></i></span>
-        <span><%= t('dashboard.index.users_tab') %></span>
+        <span><%= t('dashboard.index.tabs.users_tab') %></span>
       </a>
     </li>
   </ul>
@@ -47,23 +47,23 @@
 <div class="container" id="main">
   <div class="circles">
     <div class="metric-square">
-      Total Donors
+      <%= t('dashboard.index.analytics.total_donors') %>
       <div class="donors-circle"><%= @presenter.retrieve_total_donors %></div>
     </div>
     <div class="metric-square">
-      Stripe
+      <%= t('dashboard.index.analytics.total_stripe') %>
       <div class="stripe-circle"><%= number_to_currency(@presenter.retrieve_stripe_subtotal, unit: '$', precision: 0) %></div>
     </div>
     <div class="metric-square">
-      Total Raised
+      <%= t('dashboard.index.analytics.total_raised') %>
       <div class="donations-circle"><%= number_to_currency(@presenter.retrieve_all_total, unit: '$', precision: 0) %></div>
     </div>
     <div class="metric-square">
-      Checks
+      <%= t('dashboard.index.analytics.total_check') %>
       <div class="checks-circle"><%= number_to_currency(@presenter.retrieve_check_subtotal, unit: '$', precision: 0) %></div>
     </div>
     <div class="metric-square">
-      Kids Sponsored
+      <%= t('dashboard.index.analytics.total_kids') %>
       <div class="kids-circle"><%= @presenter.calculate_kids_sponsored %></div>
     </div>
   </div>
@@ -73,7 +73,7 @@
     <%= form_for '', :method => :get do |f| %>
       <%= f.date_field :start_date, class: 'input is-primary', placeholder: "date", id: "start" %>
       <%= f.date_field :end_date, class: 'input is-primary', placeholder: "date", id: "end" %>
-      <%= f.submit 'Filter Donations', class: "button is-inverted is-outlined is-link", id: "filter-btn"%>
+      <%= f.submit t('dashboard.index.date_filter.filter_donations'), class: "button is-inverted is-outlined is-link", id: "filter-btn"%>
     <% end %>
   </div>
 

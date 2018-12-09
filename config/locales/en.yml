@@ -35,7 +35,16 @@ en:
     change_password: "Change Password"
   dashboard:
     index:
-      donations_tab: "Donations"
-      contacts_tab: "Contacts"
-      users_tab: "Users"
+      tabs:
+        donations_tab: "Donations"
+        contacts_tab: "Contacts"
+        users_tab: "Users"
+      analytics:
+        total_donors: "Total Donors"
+        total_stripe: "Stripe"
+        total_raised: "Total Raised"
+        total_check: "Checks"
+        total_kids: "Kids Sponsored"
+      date_filter:
+        filter_donations: "Filter Donations"
 
