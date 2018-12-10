@@ -3,16 +3,16 @@ class DonationsController < ApplicationController
   def create
     donation = Donation.create(modified_donation_params)
     if donation.save 
-      redirect_to dashboard_path, :alert => "Donation from #{donation.name} has been added."
+      redirect_to dashboard_path, :alert => t('dashboard.index.donations.crud.add_success', name: donation.name)
     else
-      redirect_to dashboard_path, :alert => "Donation was not created."
+      redirect_to dashboard_path, :alert => t('dashboard.index.donations.crud.add_failure')
     end
   end 
 
   def destroy
     donation = Donation.find(params[:id])
     donation.destroy!
-    redirect_to dashboard_path, :notice => "Donation from #{donation.name} has been deleted."
+    redirect_to dashboard_path, :notice => t('dashboard.index.donations.crud.delete_success', name: donation.name)
   end
 
   private
