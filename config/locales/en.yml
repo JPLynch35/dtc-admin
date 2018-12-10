@@ -57,4 +57,7 @@ en:
         crud:
           instructions: 'Fill out the form to add a new user.'
           add: 'Add User'
+          add_success: '%{user} now has access to the Dress The Child donations dashboard.'
+          add_failure: 'User was not created.'
           confirm_delete: 'Are you sure you want to delete this user?'
+          delete_success: '%{user} no longer has access to the Dress The Child donations dashboard.'
